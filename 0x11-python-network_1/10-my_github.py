@@ -3,11 +3,18 @@
 List 10 commits starting with most recent of repo
 rails by user rails
 """
-import sys
-import requests
-from requests.auth import HTTPBasicAuth
 
-if __name__ == "__main__":
-    auth = HTTPBasicAuth(sys.argv[1], sys.argv[2])
-    r = requests.get("https://api.github.com/user", auth=auth)
-    print(r.json().get("id"))
+import requests
+import sys
+
+
+if __name__ == '__main__':
+    owner = sys.argv[2]
+    repository = sys.argv[1]
+    url = 'https://api.github.com/repos/{}/{}/commits'.format(owner,
+                                                              repository)
+    request = requests.get(url)
+    json_response = request.json()
+    for i in json_response[:10]:
+        print('{}: {}'.format(i.get('sha'),
+                              i.get('commit').get('author').get('name')))
