@@ -1,7 +1,9 @@
+
 #!/usr/bin/node
-// cript that prints all characters of a Star Wars movie:
+
 const request = require('request');
 
+//  prints all characters of a Star Wars movie:
 
 function helpRequest (arr, i) {
   if (i === arr.length) {
