@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-//  prints all characters of a Star Wars movie:
+// prints all characters of a Star Wars movie:
 
 function helpRequest (arr, i) {
   if (i === arr.length) {
