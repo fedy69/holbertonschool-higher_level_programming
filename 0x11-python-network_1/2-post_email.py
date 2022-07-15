@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" python task """
 from urllib import request, parse
 from sys import argv
 
