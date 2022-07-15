@@ -3,28 +3,24 @@
 
 
 if __name__ == "__main__":
-    from sys import argv
     import MySQLdb
+    from sys import argv, exit
 
-    # connect
-    db = MySQLdb.connect(host='localhost',
-                         port=3306,
-                         user=argv[1],
-                         passwd=argv[2],
-                         db=argv[3])
+    if len(argv) != 4:
+        print("Usage: {:s} <username> <password> <database>".format(argv[0]))
+        exit(1)
 
-    # cursor
-    c = db.cursor()
+    username = argv[1]
+    password = argv[2]
+    databasename = argv[3]
 
-    # execute query
-    c.execute("SELECT * FROM states WHERE\
-    name LIKE BINARY 'N%' ORDER BY states.id")
-
-    # fetch and print
-    rows = c.fetchall()
-    for row in rows:
+    database = MySQLdb.Connect(
+        user=username,
+        passwd=password,
+        db=databasename,
+        port=3306)
+    cursor = database.cursor()
+    cursor.execute("SELECT * FROM states")
+    states = cursor.fetchall()
+    for row in states:
         print(row)
-
-    # close cursor and database
-    c.close()
-    db.close()
