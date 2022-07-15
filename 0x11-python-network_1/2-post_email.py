@@ -1,16 +1,15 @@
 #!/usr/bin/python3
-import urllib.request
-import urllib.parse
-import sys
+from urllib import request, parse
+from sys import argv
 
 
 if __name__ == "__main__":
-    url = sys.argv[1]
-    value = {'email': sys.argv[2]}
 
-    data = urllib.parse.urlencode(value)
-    data = data.encode('ascii')
-    request = urllib.request.Request(url, data)
-    with urllib.request.urlopen(request) as response:
-        page = response.read()
-        print(page.decode())
+    url = argv[1]
+    email = argv[2]
+    data = parse.urlencode({'email': email}).encode()
+    # this will make the method "POST"
+    req = request.Request(url=url, data=data)
+
+    with request.urlopen(req) as f:
+        print(f.read().decode('utf-8'))
