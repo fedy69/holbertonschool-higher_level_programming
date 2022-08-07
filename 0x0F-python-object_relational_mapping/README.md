@@ -21,5 +21,4 @@ File|Task
 model_city.py, 14-model_city_fetch_by_state.py | classes definition
 
 
-## Author
-MAHDI ABID
+
